@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,8 +6,10 @@ public class Main {
     static Tabel tabel = new Tabel();
 
 
-    public static void main(String[] args) {
-	// siia on vaja luua meetodid, mis laseb luua kasutajal uusi auto isendeid ja sisestada nende kohta andmeid
+    public static void main(String[] args) throws Exception {
+
+
+        // siia on vaja luua meetodid, mis laseb luua kasutajal uusi auto isendeid ja sisestada nende kohta andmeid
         // kuvab kasutajale kõik auto andmed (lühendatud kujul) ja kasutaja valiku tegemisel kuvab auto täielikud andmed
         //?????
         System.out.println("Auto lisamiseks vali " + Menüü.LISA_AUTO.ordinal());
@@ -38,8 +39,15 @@ public class Main {
         }
         System.out.println(tabel.toString());
     }
+
     static void lisaAuto() {
-        LocalDate kuupäev = LocalDate.now();
+
+        int id;
+
+
+        // id lisatakse faili ja vaadatakse sealt viimast id-d ja lisatakse +1
+
+        LocalDate loomiseKuupäev = LocalDate.now();
 
         Scanner vin = new Scanner(System.in);
         System.out.println("Sisesta VIN tähis: ");
@@ -55,7 +63,7 @@ public class Main {
 
         Scanner klnt = new Scanner(System.in);
         System.out.println("Sisesta kliendi nimi: ");
-        String klient= klnt.nextLine();
+        String klient = klnt.nextLine();
 
         Scanner ak = new Scanner(System.in);
         System.out.println("Sisesta auto asukoht: ");
@@ -63,25 +71,33 @@ public class Main {
 
         ArrayList<Töö> töödeNimekiri = new ArrayList<>();
 
-        Auto uusAuto = new Auto(kuupäev, vinTähis, mark, mudel, klient, asukoht, töödeNimekiri);
+        Auto uusAuto = new Auto(id, loomiseKuupäev, vinTähis, mark, mudel, klient, asukoht, töödeNimekiri);
 
         tabel.lisaAuto(uusAuto);
 
     }
-    static void kustutaAuto() {
-        // tabel.lisaAuto();
-        // küsi kasutajalt muutujatesse kõik vajalikud andmed
-        //loo uus Auto isend
-        System.out.println("kustuta");
+
+    static void kustutaAuto() throws Exception {
+        java.io.File fail = new java.io.File("c:/temp/tabel.txt");
+        try (java.util.Scanner sc = new java.util.Scanner(fail, "UTF-8")) {
+            ArrayList<String> list1 = new ArrayList<>();
+            while (sc.hasNextLine()) {
+                String rida = sc.nextLine();
+                list1.add(rida);
+
+
+            }
+
+
+
+        }
+
 
     }
     static void prindiAuto() {
         System.out.println("prindi");
     }
-
-
 }
-
 enum Menüü {
     LISA_AUTO, PRINDI_TABEL, KUSTUTA_AUTO
 }
