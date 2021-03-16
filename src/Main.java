@@ -6,7 +6,7 @@ public class Main {
     static Tabel tabel = new Tabel();
 
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
 
         // siia on vaja luua meetodid, mis laseb luua kasutajal uusi auto isendeid ja sisestada nende kohta andmeid
