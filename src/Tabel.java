@@ -10,14 +10,22 @@ public class Tabel {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Nimi | \n"); //tee tabeli päis
+        sb.append("Kuupäev | VIN | Mark | Mudel | Asukoht | Klient \n");
         for (Auto auto: autoTabel) {
+            sb.append(auto.getKuupäev());
+            sb.append("|");
+            sb.append(auto.getVin());
+            sb.append("|");
             sb.append(auto.getMark());
             sb.append("|");
             sb.append(auto.getMudel());
+            sb.append("|");
+            sb.append(auto.getAsukoht());
+            sb.append("|");
+            sb.append(auto.getKlient());
+            sb.append("|");
             sb.append("\n");
         }
-        //for loopiga käi läbi autoTabel ja sb.append(
         return sb.toString();
     }
 }
