@@ -1,20 +1,20 @@
 public class Töö {
-    String tööNimi;
+    String nimi;
     boolean tehtud;
     String lisainfo;
 
-    public Töö(String tööNimi, boolean tehtud, String lisainfo) {
-        this.tööNimi = tööNimi;
+    public Töö(String nimi, boolean tehtud, String lisainfo) {
+        this.nimi = nimi;
         this.tehtud = tehtud;
         this.lisainfo = lisainfo;
     }
 
-    public String getTööNimi() {
-        return tööNimi;
+    public String getNimi() {
+        return nimi;
     }
 
-    public void setTööNimi(String tööNimi) {
-        this.tööNimi = tööNimi;
+    public void setNimi(String nimi) {
+        this.nimi = nimi;
     }
 
     public boolean isTehtud() {

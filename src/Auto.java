@@ -3,16 +3,16 @@ import java.util.ArrayList;
 
 public class Auto {
     private LocalDate kuupäev;
-    private String VIN;
+    private String vin;
     private Mark mark;
     private String mudel;
     private String klient;
     private Asukoht asukoht;
     private ArrayList töödeNimekiri;
 
-    public Auto(LocalDate kuupäev, String VIN, Mark mark, String mudel, String klient, Asukoht asukoht, ArrayList töödeNimekiri) {
+    public Auto(LocalDate kuupäev, String vin, Mark mark, String mudel, String klient, Asukoht asukoht, ArrayList töödeNimekiri) {
         this.kuupäev = kuupäev;
-        this.VIN = VIN;
+        this.vin = vin;
         this.mark = mark;
         this.mudel = mudel;
         this.klient = klient;
@@ -24,8 +24,8 @@ public class Auto {
         return kuupäev;
     }
 
-    public String getVIN() {
-        return VIN;
+    public String getVin() {
+        return vin;
     }
 
     public Mark getMark() {
