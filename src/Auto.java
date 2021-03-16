@@ -4,13 +4,13 @@ import java.util.ArrayList;
 public class Auto {
     private LocalDate kuupäev;
     private String vin;
-    private Mark mark;
+    private String mark;
     private String mudel;
     private String klient;
-    private Asukoht asukoht;
+    private String asukoht;
     private ArrayList töödeNimekiri;
 
-    public Auto(LocalDate kuupäev, String vin, Mark mark, String mudel, String klient, Asukoht asukoht, ArrayList töödeNimekiri) {
+    public Auto(LocalDate kuupäev, String vin, String mark, String mudel, String klient, String asukoht, ArrayList töödeNimekiri) {
         this.kuupäev = kuupäev;
         this.vin = vin;
         this.mark = mark;
@@ -28,7 +28,7 @@ public class Auto {
         return vin;
     }
 
-    public Mark getMark() {
+    public String getMark() {
         return mark;
     }
 
@@ -40,17 +40,11 @@ public class Auto {
         return klient;
     }
 
-    public Asukoht getAsukoht() {
+    public String getAsukoht() {
         return asukoht;
     }
 
     public ArrayList getTöödeNimekiri() {
         return töödeNimekiri;
     }
-}
-enum Mark {
-    Renault, Dacia;
-}
-enum Asukoht {
-    Tartu, Laagri, Kuressaare, Narva;
 }

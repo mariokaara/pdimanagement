@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Tabel {
     ArrayList<Auto> autoTabel = new ArrayList<>();
 
-    public void lisAuto(Auto auto) {
+    public void lisaAuto(Auto auto) {
         autoTabel.add(auto);
     }
 
