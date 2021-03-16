@@ -10,7 +10,7 @@ public class Tabel {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Kuupäev | VIN | Mark | Mudel | Asukoht | Klient \n");
+        sb.append("Kuupäev    |       VIN       |   Mark   |    Mudel    |    Asukoht    |    Klient    |\n");
         for (Auto auto: autoTabel) {
             sb.append(auto.getKuupäev());
             sb.append("|");

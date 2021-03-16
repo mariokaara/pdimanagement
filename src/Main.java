@@ -36,6 +36,7 @@ public class Main {
             }
 
         }
+        System.out.println(tabel.toString());
     }
     static void lisaAuto() {
         LocalDate kuupäev = LocalDate.now();
