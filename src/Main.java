@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    static Tabel tabel = new Tabel();
+    static Tabel mäluTabel = new MäluTabel();
 
 
     public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class Main {
                 break;
             }
             case PRINDI_TABEL -> {
-                prindiAuto();
+                prindiTabel();
                 break;
             }
             case KUSTUTA_AUTO -> {
@@ -37,67 +37,54 @@ public class Main {
             }
 
         }
-        System.out.println(tabel.toString());
+        System.out.println(mäluTabel.toString());
     }
 
     static void lisaAuto() {
 
-        int id;
+        Scanner sisend = new Scanner(System.in);
 
-
-        // id lisatakse faili ja vaadatakse sealt viimast id-d ja lisatakse +1
-
+        System.out.println("Sisesta kuupäev formaadis YYYY-MM-DD: ");
+        String kuupäev = sisend.nextLine();
         LocalDate loomiseKuupäev = LocalDate.now();
 
-        Scanner vin = new Scanner(System.in);
+        if (kuupäev.length() != 0) {
+            loomiseKuupäev = LocalDate.parse(kuupäev);
+        }
+
         System.out.println("Sisesta VIN tähis: ");
-        String vinTähis = vin.nextLine();
+        String vinTähis = sisend.nextLine();
 
-        Scanner mk = new Scanner(System.in);
         System.out.println("Sisesta auto mark: ");
-        String mark = mk.nextLine();
+        String mark = sisend.nextLine();
 
-        Scanner mdl = new Scanner(System.in);
         System.out.println("Sisesta auto mudel: ");
-        String mudel = mdl.nextLine();
+        String mudel = sisend.nextLine();
 
-        Scanner klnt = new Scanner(System.in);
         System.out.println("Sisesta kliendi nimi: ");
-        String klient = klnt.nextLine();
+        String klient = sisend.nextLine();
 
-        Scanner ak = new Scanner(System.in);
         System.out.println("Sisesta auto asukoht: ");
-        String asukoht = ak.nextLine();
+        String asukoht = sisend.nextLine();
 
         ArrayList<Töö> töödeNimekiri = new ArrayList<>();
 
-        Auto uusAuto = new Auto(id, loomiseKuupäev, vinTähis, mark, mudel, klient, asukoht, töödeNimekiri);
+        Auto uusAuto = new Auto(loomiseKuupäev, vinTähis, mark, mudel, klient, asukoht, töödeNimekiri);
 
-        tabel.lisaAuto(uusAuto);
+        mäluTabel.lisaAuto(uusAuto);
+
+    }
+
+    static void kustutaAuto() {
 
     }
 
-    static void kustutaAuto() throws Exception {
-        java.io.File fail = new java.io.File("c:/temp/tabel.txt");
-        try (java.util.Scanner sc = new java.util.Scanner(fail, "UTF-8")) {
-            ArrayList<String> list1 = new ArrayList<>();
-            while (sc.hasNextLine()) {
-                String rida = sc.nextLine();
-                list1.add(rida);
 
-
-            }
-
-
-
-        }
-
-
-    }
-    static void prindiAuto() {
+    static void prindiTabel() {
         System.out.println("prindi");
     }
 }
+
 enum Menüü {
     LISA_AUTO, PRINDI_TABEL, KUSTUTA_AUTO
 }
