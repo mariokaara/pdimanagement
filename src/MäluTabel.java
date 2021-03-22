@@ -8,32 +8,43 @@ public class MäluTabel implements  Tabel{
     }
 
     @Override
-    public void kustutaAuto(int autoId) {
-
+    public boolean kustutaAuto(int reaNr) {
+        if (reaNr > 0 && reaNr <= autoTabel.size()) {
+            autoTabel.remove(reaNr-1);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public String prindiTabel() {
-        return null;
-    }
-
-    @Override
-    public String toString() {
-
+        if (autoTabel.isEmpty()) {
+            return "Tabel on tühi!";
+        }
         int kliendiVäljaPikkus = kliendiVäljaPikkus();
+        int mudeliVäljapikkus = mudeliVäljapikkus();
         String kliendiPäis = "Klient";
+        String mudeliPäis = "Mudel";
         kliendiPäis = String.format("%1$-" + kliendiVäljaPikkus + "s", kliendiPäis);
+        mudeliPäis = String.format("%1$-" + mudeliVäljapikkus + "s", mudeliPäis);
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Kuupäev   |       VIN       | Mark  |    Mudel    | Asukoht  |" + kliendiPäis + "|\n");
+        sb.append("|Nr |Kuupäev   |       VIN       | Mark  |" + mudeliPäis + "| Asukoht  |" + kliendiPäis + "|\n");
+
+        int i = 1;
+
         for (Auto auto: autoTabel) {
+            sb.append("|");
+            sb.append(String.format("%1$-3s", i++));
+            sb.append("|");
             sb.append(auto.getKuupäev());
             sb.append("|");
             sb.append(auto.getVin());
             sb.append("|");
             sb.append(String.format("%1$-7s", auto.getMark()));
             sb.append("|");
-            sb.append(auto.getMudel());
+            sb.append(String.format("%1$-" + mudeliVäljapikkus +"s", auto.getMudel()));
             sb.append("|");
             sb.append(String.format("%1$-10s", auto.getAsukoht()));
             sb.append("|");
@@ -50,6 +61,17 @@ public class MäluTabel implements  Tabel{
         for (Auto i: autoTabel) {
             if (i.getKlient().length() > pikkus) {
                 pikkus = i.getKlient().length();
+            }
+        }
+
+        return pikkus;
+    }
+    private int mudeliVäljapikkus() {
+        int pikkus = 0;
+
+        for (Auto i: autoTabel) {
+            if (i.getMudel().length() > pikkus) {
+                pikkus = i.getMudel().length();
             }
         }
 

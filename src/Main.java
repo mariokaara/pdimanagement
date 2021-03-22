@@ -10,41 +10,45 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-
-        // siia on vaja luua meetodid, mis laseb luua kasutajal uusi auto isendeid ja sisestada nende kohta andmeid
-        // kuvab kasutajale kõik auto andmed (lühendatud kujul) ja kasutaja valiku tegemisel kuvab auto täielikud andmed
-        //?????
-        System.out.println("Auto lisamiseks vali " + Menüü.LISA_AUTO.ordinal());
-        System.out.println("Tabeli printimiseks vali " + Menüü.PRINDI_TABEL.ordinal());
-        System.out.println("Auto kustutamiseks vali " + Menüü.KUSTUTA_AUTO.ordinal());
+        System.out.println("Auto lisamiseks vali: " + Menüü.LISA_AUTO.ordinal());
+        System.out.println("Tabeli printimiseks vali: " + Menüü.PRINDI_TABEL.ordinal());
+        System.out.println("Auto kustutamiseks vali: " + Menüü.KUSTUTA_AUTO.ordinal());
+        System.out.println("Väljumiseks vali: " + Menüü.MENÜÜST_VÄLJA.ordinal());
 
 
         Scanner valik = new Scanner(System.in);
-        int input = valik.nextInt();
 
-        //while loopi sisse
-        switch (Menüü.values()[input]) {
 
-            case LISA_AUTO -> {
-                lisaAuto();
-                break;
-            }
-            case PRINDI_TABEL -> {
-                prindiTabel();
-                break;
-            }
-            case KUSTUTA_AUTO -> {
-                kustutaAuto();
-                break;
-            }
+        loop: while (true) {
+            System.out.print("Tee valik: ");
 
+            int input = valik.nextInt();
+            switch (Menüü.values()[input]) {
+
+                case LISA_AUTO -> {
+                    lisaAutoMenüü();
+                    break;
+                }
+                case PRINDI_TABEL -> {
+                    prindiTabelMenüü();
+                    break;
+                }
+                case KUSTUTA_AUTO -> {
+                    kustutaAutoMenüü();
+                    break;
+                }
+                case MENÜÜST_VÄLJA -> {
+                    break loop;
+                }
+
+            }
         }
-        System.out.println(tabel.toString());
+
 
 
     }
 
-    static void lisaAuto() {
+    static void lisaAutoMenüü() {
 
         Scanner sisend = new Scanner(System.in);
 
@@ -77,18 +81,29 @@ public class Main {
 
         tabel.lisaAuto(uusAuto);
 
-    }
-
-    static void kustutaAuto() {
+        System.out.println("Uus auto edukalt sisestatud!");
 
     }
 
+    static void kustutaAutoMenüü() {
+        System.out.print("Sisesta auto rea nr: ");
+        Scanner sc = new Scanner(System.in);
+        int reaNr = sc.nextInt();
+        if (tabel.kustutaAuto(reaNr)) {
+            System.out.println("Auto realt nr " + reaNr + " kustutatud!");
+        }
+        else {
+            System.out.println("Auto eemaldamine ebaõnnestus. Kontrolli rea numberit!");
+        }
 
-    static void prindiTabel() {
-        System.out.println("prindi");
+    }
+
+
+    static void prindiTabelMenüü() {
+        System.out.println(tabel.prindiTabel());
     }
 }
 
 enum Menüü {
-    LISA_AUTO, PRINDI_TABEL, KUSTUTA_AUTO
+    LISA_AUTO, PRINDI_TABEL, KUSTUTA_AUTO, MENÜÜST_VÄLJA
 }

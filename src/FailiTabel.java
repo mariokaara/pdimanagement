@@ -21,24 +21,30 @@ public class FailiTabel implements Tabel {
 
     @Override
     public void lisaAuto(Auto auto) {
-        //TODO: Lisa kõik auto väljad
-        String autoRida = auto.getKuupäev() + "," + auto.getVin() + "\n";
+        String autoRida = auto.getKuupäev() + "," + auto.getVin() + "," + auto.getMark() + "," + auto.getMudel() + "," + auto.getKlient() + "," + auto.getAsukoht() + "," + auto.getTöödeNimekiri() + "\n";
         try {
             Files.writeString(fail, autoRida, StandardOpenOption.APPEND);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
-    public void kustutaAuto(int autoId) {
+    public boolean kustutaAuto(int reaNr) {
         try {
             List<String> read = Files.readAllLines(fail);
-            read.remove(autoId - 1);
-            Files.write(fail, read, StandardOpenOption.TRUNCATE_EXISTING);
+            if (reaNr > 0 && reaNr <= read.size()) {
+                read.remove(reaNr-1);
+                Files.write(fail, read, StandardOpenOption.TRUNCATE_EXISTING);
+                return true;
+            } else {
+                return false;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     @Override
