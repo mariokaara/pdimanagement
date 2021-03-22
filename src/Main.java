@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    static Tabel mäluTabel = new MäluTabel();
+    //static Tabel tabel = new MäluTabel();
+    static Tabel tabel = new FailiTabel("autod.txt");
 
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -38,7 +39,7 @@ public class Main {
             }
 
         }
-        System.out.println(mäluTabel.toString());
+        System.out.println(tabel.toString());
 
 
     }
@@ -74,7 +75,7 @@ public class Main {
 
         Auto uusAuto = new Auto(loomiseKuupäev, vinTähis, mark, mudel, klient, asukoht, töödeNimekiri);
 
-        mäluTabel.lisaAuto(uusAuto);
+        tabel.lisaAuto(uusAuto);
 
     }
 
