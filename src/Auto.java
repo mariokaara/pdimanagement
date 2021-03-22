@@ -48,4 +48,31 @@ public class Auto {
         return töödeNimekiri;
     }
 
+    public void setKuupäev(LocalDate kuupäev) {
+        this.kuupäev = kuupäev;
+    }
+
+    public void setVin(String vin) {
+        this.vin = vin;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
+
+    public void setMudel(String mudel) {
+        this.mudel = mudel;
+    }
+
+    public void setKlient(String klient) {
+        this.klient = klient;
+    }
+
+    public void setAsukoht(String asukoht) {
+        this.asukoht = asukoht;
+    }
+
+    public void setTöödeNimekiri(ArrayList töödeNimekiri) {
+        this.töödeNimekiri = töödeNimekiri;
+    }
 }

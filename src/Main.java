@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,7 +7,7 @@ public class Main {
     static Tabel mäluTabel = new MäluTabel();
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
 
         // siia on vaja luua meetodid, mis laseb luua kasutajal uusi auto isendeid ja sisestada nende kohta andmeid
@@ -38,6 +39,8 @@ public class Main {
 
         }
         System.out.println(mäluTabel.toString());
+
+
     }
 
     static void lisaAuto() {
