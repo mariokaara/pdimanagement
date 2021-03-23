@@ -119,6 +119,7 @@ public class Main {
 
         Töö uusTöö = new Töö(nimi, tehtud, lisainfo );
 
+
         tabel.lisaTöö(uusTöö);
 
         System.out.println("Uus töö edukalt sisestatud!");
