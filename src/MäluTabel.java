@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 
-public class MäluTabel implements  Tabel{
+public class MäluTabel implements Tabel{
     ArrayList<Auto> autoTabel = new ArrayList<>();
 
     public void lisaAuto(Auto auto) {
         autoTabel.add(auto);
     }
+
 
     @Override
     public boolean kustutaAuto(int reaNr) {
