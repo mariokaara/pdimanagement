@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    //static Tabel tabel = new MäluTabel();
-    static Tabel tabel = new FailiTabel("autod.txt");
+    static Tabel tabel = new MäluTabel();
+    //static Tabel tabel = new FailiTabel("autod.txt");
 
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -13,6 +13,7 @@ public class Main {
         System.out.println("Auto lisamiseks vali: " + Menüü.LISA_AUTO.ordinal());
         System.out.println("Tabeli printimiseks vali: " + Menüü.PRINDI_TABEL.ordinal());
         System.out.println("Auto kustutamiseks vali: " + Menüü.KUSTUTA_AUTO.ordinal());
+        System.out.println("Töö lisamiseks vali: " + Menüü.LISA_TÖÖ.ordinal());
         System.out.println("Väljumiseks vali: " + Menüü.MENÜÜST_VÄLJA.ordinal());
 
 
@@ -37,6 +38,14 @@ public class Main {
                     kustutaAutoMenüü();
                     break;
                 }
+                case LISA_TÖÖ -> {
+                    lisaTööMenüü();
+                    break;
+                }
+
+
+
+
                 case MENÜÜST_VÄLJA -> {
                     break loop;
                 }
@@ -79,9 +88,40 @@ public class Main {
 
         Auto uusAuto = new Auto(loomiseKuupäev, vinTähis, mark, mudel, klient, asukoht, töödeNimekiri);
 
-        tabel.lisaAuto(uusAuto);
 
-        System.out.println("Uus auto edukalt sisestatud!");
+        System.out.println("Uus töö edukalt sisestatud!");
+
+    }
+
+
+    static void lisaTööMenüü() {
+
+        Scanner sisend = new Scanner(System.in);
+
+        /*
+        System.out.println("Sisesta kuupäev formaadis YYYY-MM-DD: ");
+        String kuupäev = sisend.nextLine();
+        LocalDate loomiseKuupäev = LocalDate.now();
+
+        if (kuupäev.length() != 0) {
+            loomiseKuupäev = LocalDate.parse(kuupäev);
+        }
+*/
+        System.out.println("Sisesta töö nimetus: ");
+        String nimi = sisend.nextLine();
+
+        System.out.println("Sisesta lisainfo: ");
+        String lisainfo = sisend.nextLine();
+
+        boolean tehtud = false;
+
+        ArrayList<Töö> töödeNimekiri = new ArrayList<>();
+
+        Töö uusTöö = new Töö(nimi, tehtud, lisainfo );
+
+        tabel.lisaTöö(uusTöö);
+
+        System.out.println("Uus töö edukalt sisestatud!");
 
     }
 
@@ -105,5 +145,5 @@ public class Main {
 }
 
 enum Menüü {
-    LISA_AUTO, PRINDI_TABEL, KUSTUTA_AUTO, MENÜÜST_VÄLJA
+    LISA_AUTO, PRINDI_TABEL, KUSTUTA_AUTO, LISA_TÖÖ, MENÜÜST_VÄLJA
 }

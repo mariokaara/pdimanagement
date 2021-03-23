@@ -30,6 +30,7 @@ public class FailiTabel implements Tabel {
 
     }
 
+
     @Override
     public boolean kustutaAuto(int reaNr) {
         try {
