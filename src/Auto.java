@@ -1,16 +1,16 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Auto {
+
     private LocalDate kuupäev;
     private String vin;
     private String mark;
     private String mudel;
     private String klient;
     private String asukoht;
-    private ArrayList töödeNimekiri;
+    private String töödeNimekiri;
 
-    public Auto(LocalDate kuupäev, String vin, String mark, String mudel, String klient, String asukoht, ArrayList töödeNimekiri) {
+    public Auto(LocalDate kuupäev, String vin, String mark, String mudel, String klient, String asukoht, String töödeNimekiri) {
         this.kuupäev = kuupäev;
         this.vin = vin;
         this.mark = mark;
@@ -44,7 +44,7 @@ public class Auto {
         return asukoht;
     }
 
-    public ArrayList getTöödeNimekiri() {
+    public String getTöödeNimekiri() {
         return töödeNimekiri;
     }
 
@@ -72,7 +72,7 @@ public class Auto {
         this.asukoht = asukoht;
     }
 
-    public void setTöödeNimekiri(ArrayList töödeNimekiri) {
+    public void setTöödeNimekiri(String töödeNimekiri) {
         this.töödeNimekiri = töödeNimekiri;
     }
 }

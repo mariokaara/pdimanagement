@@ -36,7 +36,7 @@ public class FailiTabel implements Tabel {
         try {
             List<String> read = Files.readAllLines(fail);
             if (reaNr > 0 && reaNr <= read.size()) {
-                read.remove(reaNr-1);
+                read.remove(reaNr - 1);
                 Files.write(fail, read, StandardOpenOption.TRUNCATE_EXISTING);
                 return true;
             } else {
