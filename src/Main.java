@@ -17,8 +17,10 @@ public class Main {
         System.out.println("Auto lisamiseks vali: " + Menüü.LISA_AUTO.ordinal());
         System.out.println("Tabeli printimiseks vali: " + Menüü.PRINDI_TABEL.ordinal());
         System.out.println("Auto kustutamiseks vali: " + Menüü.KUSTUTA_AUTO.ordinal());
-        System.out.println("Vali tabeli implementatsioon. 1 - mälutabel või 2 - failitabel: " + Menüü.VALI_TABEL.ordinal());
+        System.out.println("Vali tabeli implementatsioon: Menüü.VALI_TABEL.ordinal() + " --> 1 - mälutabel või 2 - failitabel");
         System.out.println("Väljumiseks vali: " + Menüü.MENÜÜST_VÄLJA.ordinal());
+
+
 
 
         Scanner valik = new Scanner(System.in);
@@ -126,5 +128,5 @@ public class Main {
 }
 
 enum Menüü {
-    LISA_AUTO, PRINDI_TABEL, KUSTUTA_AUTO, MENÜÜST_VÄLJA, VALI_TABEL
+    LISA_AUTO, PRINDI_TABEL, KUSTUTA_AUTO, VALI_TABEL, MENÜÜST_VÄLJA
 }
