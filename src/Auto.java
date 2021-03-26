@@ -2,6 +2,8 @@ import java.time.LocalDate;
 
 public class Auto {
 
+    // auto isend, mis sisaldab kasutaja jaoks kõiki vajalikke välju. Loodud on kõigile ka getterid ja setterid
+
     private LocalDate kuupäev;
     private String vin;
     private String mark;
