@@ -21,6 +21,7 @@ public class FailiTabel implements Tabel {
             if (!Files.exists(fail)) {
                 Files.createFile(Path.of(failiNimi));
             }
+            // võimaliku probleemi korral "püütakse" siin erind kinni ja logitakse. Programm saab tänu sellele jätkuda.
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,7 +31,9 @@ public class FailiTabel implements Tabel {
     public void lisaAuto(Auto auto) {
         String autoRida = auto.getKuupäev() + "," + auto.getVin() + "," + auto.getMark() + "," + auto.getMudel() + "," + auto.getKlient() + "," + auto.getAsukoht() + "," + auto.getTöödeNimekiri() + "\n";
         try {
+            // kirjutatakse faili lõppu
             Files.writeString(fail, autoRida, StandardOpenOption.APPEND);
+            // võimaliku probleemi korral "püütakse" siin erind kinni ja logitakse. Programm saab tänu sellele jätkuda.
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,6 +52,7 @@ public class FailiTabel implements Tabel {
             } else {
                 return false;
             }
+            // võimaliku probleemi korral "püütakse" siin erind kinni ja logitakse. Programm saab tänu sellele jätkuda.
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,6 +71,7 @@ public class FailiTabel implements Tabel {
                 i++;
             }
             return uuedRead.toString();
+            // võimaliku probleemi korral "püütakse" siin erind kinni ja logitakse. Programm saab tänu sellele jätkuda.
         } catch (IOException e) {
             e.printStackTrace();
         }

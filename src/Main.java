@@ -61,7 +61,7 @@ public class Main {
 
 
     }
-
+    // valitakse tabeli implementatsioon
     private static void valiTabel() {
         Scanner sisend = new Scanner(System.in);
 
