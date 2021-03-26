@@ -6,8 +6,15 @@ import java.util.List;
 
 public class FailiTabel implements Tabel {
 
+    // FailiTabeli klassi kasutatakse sõidukite andmete lisamiseks txt formaadis faili, et
+    // sõidukite seis oleks pikemaajaliselt kättesaadav. MäluTabelit oli vaja pigem ajutiselt, et
+    // kasutajal oleks võimalik programmi tööd testida (FailiTabeli funktsioneerimine oli natuke
+    // ajamahukam ja esialgu ei olnud kindlust kas see mahub projekti skoopi (rühmatöö 1. osa)
+
     private Path fail;
 
+
+    //kui faili ei eksisteeri, siis luuakse fail
     public FailiTabel(String failiNimi) {
         try {
             this.fail = Path.of(failiNimi);
@@ -18,7 +25,7 @@ public class FailiTabel implements Tabel {
             e.printStackTrace();
         }
     }
-
+    // lisatakse auto isend ühe reana txt faili (lisatakse lõppu)
     @Override
     public void lisaAuto(Auto auto) {
         String autoRida = auto.getKuupäev() + "," + auto.getVin() + "," + auto.getMark() + "," + auto.getMudel() + "," + auto.getKlient() + "," + auto.getAsukoht() + "," + auto.getTöödeNimekiri() + "\n";
@@ -30,7 +37,7 @@ public class FailiTabel implements Tabel {
 
     }
 
-
+    // loetakse failist sisse kõik read ning kustutatakse isend realt, mille järjekorranumbri annab kasutaja (reaNr)
     @Override
     public boolean kustutaAuto(int reaNr) {
         try {
@@ -47,7 +54,7 @@ public class FailiTabel implements Tabel {
         }
         return false;
     }
-
+    // Kõik faili read lisatakse uude StringBuilder isendisse ja prinditakse ükshaaval välja
     @Override
     public String prindiTabel() {
         try {

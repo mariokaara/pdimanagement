@@ -1,13 +1,19 @@
 import java.util.ArrayList;
 
 public class MäluTabel implements Tabel {
+
+    // MäluTabel on sõidukite salvestamiseks ja printimiseks konsoolist, kuid tabeli seis
+    // piirdub IDE sulgemisega (mälu kustub). Küll aga on MäluTabelis salvestatud sõidukite
+    // seisu väljaprint standardiseeritud ja visuaalselt hästi mõistetav (kasutatud on paddinguid
+    // ning dünaamilisi väljapikkusi).
+
     ArrayList<Auto> autoTabel = new ArrayList<>();
 
     public void lisaAuto(Auto auto) {
         autoTabel.add(auto);
     }
 
-
+    //
     @Override
     public boolean kustutaAuto(int reaNr) {
         if (reaNr > 0 && reaNr <= autoTabel.size()) {
