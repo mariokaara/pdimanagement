@@ -9,6 +9,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
@@ -41,6 +43,44 @@ public class AutoVorm extends VBox {
         textField7.setPromptText("Sisesta tööd: ");
         textField7.setFocusTraversable(false);
         Button lisaAuto = new Button("Lisa auto");
+
+        textField1.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.TAB)){
+                textField2.requestFocus();
+            }
+        });
+        textField2.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.TAB)){
+                textField3.requestFocus();
+            }
+        });
+        textField3.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.TAB)){
+                textField4.requestFocus();
+            }
+        });
+        textField4.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.TAB)){
+                textField5.requestFocus();
+            }
+        });
+        textField5.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.TAB)){
+                textField6.requestFocus();
+            }
+        });
+        textField6.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.TAB)){
+                textField7.requestFocus();
+            }
+        });
+        textField7.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.TAB)){
+                lisaAuto.requestFocus();
+            }
+        });
+
+
 
         aktiivneAuto.addListener(new ChangeListener<Auto>() {
             @Override
