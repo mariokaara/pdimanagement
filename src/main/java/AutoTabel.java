@@ -1,15 +1,22 @@
-import javafx.beans.Observable;
+import javafx.beans.value.ObservableValue;
+import javafx.beans.value.WritableObjectValue;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AutoTabel extends TableView<Auto> {
 
-    public AutoTabel(ObservableList<Auto> autod) {
+    public AutoTabel(ObservableList<Auto> autod, WritableObjectValue<Auto> aktiivneAuto) {
+
+        this.setOnMouseClicked(x -> {
+            Auto valitudAuto = getSelectionModel().getSelectedItem();
+            aktiivneAuto.set(valitudAuto);
+        });
 
         TableColumn kuupäev = new TableColumn<Tabel, String>("Kuupäev");
         kuupäev.setMaxWidth(75);
