@@ -1,96 +1,94 @@
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.beans.value.WritableObjectValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
+import java.io.*;
 import java.time.LocalDate;
 
 public class AutoVorm extends VBox {
 
-    public AutoVorm(ObservableList<Auto> vaadeldavadAutod, ObjectProperty<Auto> aktiivneAuto) {
+    public AutoVorm(ObservableList<Auto> vaadeldavadAutod, ObjectProperty<Auto> aktiivneAuto){
 
         super(10);
+
         this.setAlignment(Pos.TOP_CENTER);
+        /*
         TextField textField1 = new TextField();
         textField1.setPromptText("Sisesta kuupäev: ");
-        textField1.setFocusTraversable(false);
+        textField1.setFocusTraversable(true);
+*/
+
+        DatePicker kalender = new DatePicker();
+        kalender.setPromptText("Sisesta kuupäev: ");
+        kalender.setFocusTraversable(true);
+
         TextField textField2 = new TextField();
         textField2.setPromptText("Sisesta VIN tähis: ");
-        textField2.setFocusTraversable(false);
-        TextField textField3 = new TextField();
-        textField3.setPromptText("Sisesta auto mark: ");
-        textField3.setFocusTraversable(false);
+        textField2.setFocusTraversable(true);
+
+        ComboBox<String> comboBox1 = new ComboBox<>();
+        comboBox1.getItems().addAll("Renault", "Dacia");
+        comboBox1.setPromptText("Sisesta auto mark: ");
+        comboBox1.setFocusTraversable(true);
+
         TextField textField4 = new TextField();
         textField4.setPromptText("Sisesta auto mudel: ");
-        textField4.setFocusTraversable(false);
+        textField4.setFocusTraversable(true);
+
         TextField textField5 = new TextField();
         textField5.setPromptText("Sisesta kliendi nimi: ");
-        textField5.setFocusTraversable(false);
-        TextField textField6 = new TextField();
-        textField6.setPromptText("Sisesta auto asukoht: ");
-        textField6.setFocusTraversable(false);
+        textField5.setFocusTraversable(true);
+
+        ComboBox<String> comboBox2 = new ComboBox<>();
+        comboBox2.getItems().addAll("Tartu", "Laagri", "Narva", "Kuressaare");
+        comboBox2.setPromptText("Sisesta auto asukoht: ");
+        comboBox2.setFocusTraversable(true);
+
         TextField textField7 = new TextField();
         textField7.setPromptText("Sisesta tööd: ");
-        textField7.setFocusTraversable(false);
-        Button lisaAuto = new Button("Lisa auto");
+        textField7.setFocusTraversable(true);
 
-        textField1.setOnKeyPressed(event -> {
-            if(event.getCode().equals(KeyCode.TAB)){
-                textField2.requestFocus();
-            }
-        });
-        textField2.setOnKeyPressed(event -> {
-            if(event.getCode().equals(KeyCode.TAB)){
-                textField3.requestFocus();
-            }
-        });
-        textField3.setOnKeyPressed(event -> {
-            if(event.getCode().equals(KeyCode.TAB)){
-                textField4.requestFocus();
-            }
-        });
-        textField4.setOnKeyPressed(event -> {
-            if(event.getCode().equals(KeyCode.TAB)){
-                textField5.requestFocus();
-            }
-        });
-        textField5.setOnKeyPressed(event -> {
-            if(event.getCode().equals(KeyCode.TAB)){
-                textField6.requestFocus();
-            }
-        });
-        textField6.setOnKeyPressed(event -> {
-            if(event.getCode().equals(KeyCode.TAB)){
-                textField7.requestFocus();
-            }
-        });
-        textField7.setOnKeyPressed(event -> {
-            if(event.getCode().equals(KeyCode.TAB)){
-                lisaAuto.requestFocus();
-            }
-        });
+        Button lisaAuto = new Button("LISA");
+
+        Button muudaAuto = new Button("MUUDA");
+
+        Button kustutaAuto;
+
+        try (InputStream input = getClass().getResourceAsStream("pilt_kustuta.png");) {
+            Image image = new Image(input);
+            ImageView imageView = new ImageView(image);
+            imageView.setFitHeight(20);
+            imageView.setPreserveRatio(true);
+            kustutaAuto = new Button("KUSTUTA", imageView);
+        } catch (Exception e) {
+            kustutaAuto = new Button("KUSTUTA");
+        }
 
 
 
         aktiivneAuto.addListener(new ChangeListener<Auto>() {
             @Override
             public void changed(ObservableValue<? extends Auto> observable, Auto oldValue, Auto newValue) {
-                textField1.setText(newValue.getKuupäev().toString());
+                kalender.setValue(newValue.getKuupäev());
                 textField2.setText(newValue.getVin());
-                textField3.setText(newValue.getMark());
+                comboBox1.setValue(newValue.getMark());
                 textField4.setText(newValue.getMudel());
                 textField5.setText(newValue.getKlient());
-                textField6.setText(newValue.getAsukoht());
+                comboBox2.setValue(newValue.getAsukoht());
                 textField7.setText(newValue.getTöödeNimekiri());
             }
         });
@@ -100,33 +98,67 @@ public class AutoVorm extends VBox {
         lisaAuto.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String kuupäev = textField1.getText();
+                LocalDate kuupäev = kalender.getValue();
                 String vin = textField2.getText();
-                String mark = textField3.getText();
+                String mark = comboBox1.getValue();
                 String mudel = textField4.getText();
                 String klient = textField5.getText();
-                String asukoht = textField6.getText();
+                String asukoht = comboBox2.getValue();
                 String töödeNimekiri = textField7.getText();
 
-                Auto auto = new Auto(LocalDate.parse(kuupäev), vin, mark, mudel, klient, asukoht, töödeNimekiri);
+                Auto auto = new Auto(kuupäev, vin, mark, mudel, klient, asukoht, töödeNimekiri);
                 vaadeldavadAutod.add(auto);
 
-                textField1.clear();
                 textField2.clear();
-                textField3.clear();
+
                 textField4.clear();
                 textField5.clear();
-                textField6.clear();
+
+                textField7.clear();
+            }
+        });
+        muudaAuto.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                LocalDate kuupäev = kalender.getValue();
+                String vin = textField2.getText();
+                String mark = comboBox1.getValue();
+                String mudel = textField4.getText();
+                String klient = textField5.getText();
+                String asukoht = comboBox2.getValue();
+                String töödeNimekiri = textField7.getText();
+
+                Auto auto = aktiivneAuto.get();
+
+                auto.setKuupäev(kuupäev);
+                auto.setVin(vin);
+                auto.setMark(mark);
+                auto.setMudel(mudel);
+                auto.setKlient(klient);
+                auto.setAsukoht(asukoht);
+                auto.setTöödeNimekiri(töödeNimekiri);
+                aktiivneAuto.set(auto);
+
+                textField2.clear();
+                textField4.clear();
+                textField5.clear();
                 textField7.clear();
             }
         });
 
 
-        this.getChildren().addAll(textField1, textField2, textField3, textField4, textField5, textField6, textField7, lisaAuto);
+        this.getChildren().addAll(kalender, textField2, comboBox1, textField4, textField5, comboBox2, textField7, lisaAuto, muudaAuto, kustutaAuto);
 
         this.getChildren().forEach(x -> {
             VBox.setMargin(x, new Insets(0, 10, 0, 10));
         });
+
+        Font font = Font.font("Roboto", FontWeight.BOLD, 14);
+        lisaAuto.setFont(font);
+        muudaAuto.setFont(font);
+        kustutaAuto.setFont(font);
+
+
     }
 
 }

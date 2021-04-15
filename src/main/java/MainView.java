@@ -1,4 +1,6 @@
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -9,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,10 +37,11 @@ public class MainView {
         SimpleObjectProperty<Auto> aktiivneAuto = new SimpleObjectProperty<>();
 
 
+
         // Ülemine
         HBox hBox = new HBox(10);
         hBox.setAlignment(Pos.CENTER);
-        Label top = new Label("PDI Management v1.0");
+        Label top = new Label("");
         top.setFont(new Font("Roboto", 18));
         hBox.getChildren().add(top);
         root.setTop(hBox);
@@ -53,6 +57,16 @@ public class MainView {
         //
         AutoTabel table = new AutoTabel(vaadeldavadAutod, aktiivneAuto);
         root.setCenter(table);
+
+        aktiivneAuto.addListener(new ChangeListener<Auto>() {
+            @Override
+            public void changed(ObservableValue<? extends Auto> observable, Auto oldValue, Auto newValue) {
+                ObservableList<Auto> uusList = FXCollections.emptyObservableList();
+                FXCollections.copy(uusList, vaadeldavadAutod);
+                table.getItems().clear();
+                table.setItems(uusList);
+            }
+        });
 
         // Parem
         //Button right = new Button("Right");

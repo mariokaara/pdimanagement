@@ -5,7 +5,6 @@ import javafx.collections.ObservableSet;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
