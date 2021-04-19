@@ -8,15 +8,17 @@ public class Auto {
     private String vin;
     private String mark;
     private String mudel;
+    private String värvus;
     private String klient;
     private String asukoht;
     private String töödeNimekiri;
 
-    public Auto(LocalDate kuupäev, String vin, String mark, String mudel, String klient, String asukoht, String töödeNimekiri) {
+    public Auto(LocalDate kuupäev, String vin, String mark, String mudel, String värvus, String klient, String asukoht, String töödeNimekiri) {
         this.kuupäev = kuupäev;
         this.vin = vin;
         this.mark = mark;
         this.mudel = mudel;
+        this.värvus = värvus;
         this.klient = klient;
         this.asukoht = asukoht;
         this.töödeNimekiri = töödeNimekiri;
@@ -36,6 +38,10 @@ public class Auto {
 
     public String getMudel() {
         return mudel;
+    }
+
+    public String getVärvus() {
+        return värvus;
     }
 
     public String getKlient() {
@@ -64,6 +70,10 @@ public class Auto {
 
     public void setMudel(String mudel) {
         this.mudel = mudel;
+    }
+
+    public void setVärvus(String mudel) {
+        this.värvus = värvus;
     }
 
     public void setKlient(String klient) {

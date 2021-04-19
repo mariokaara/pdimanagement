@@ -94,6 +94,9 @@ public class Main {
         System.out.println("Sisesta auto mudel: ");
         String mudel = sisend.nextLine();
 
+        System.out.println("Sisesta auto värvus: ");
+        String värvus = sisend.nextLine();
+
         System.out.println("Sisesta kliendi nimi: ");
         String klient = sisend.nextLine();
 
@@ -103,7 +106,7 @@ public class Main {
         System.out.println("Sisesta tööd: ");
         String töödeNimekiri = sisend.nextLine();
 
-        Auto uusAuto = new Auto(loomiseKuupäev, vinTähis, mark, mudel, klient, asukoht, töödeNimekiri);
+        Auto uusAuto = new Auto(loomiseKuupäev, vinTähis, mark, mudel, värvus, klient, asukoht, töödeNimekiri);
 
         tabel.lisaAuto(uusAuto);
 

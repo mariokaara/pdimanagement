@@ -37,6 +37,11 @@ public class AutoTabel extends TableView<Auto> {
         mudel.setMinWidth(100);
         mudel.setCellValueFactory(new PropertyValueFactory<Tabel, String>("mudel"));
 
+        TableColumn värvus = new TableColumn<Tabel, String>("Värvus");
+        värvus.setMaxWidth(150);
+        värvus.setMinWidth(100);
+        värvus.setCellValueFactory(new PropertyValueFactory<Tabel, String>("värvus"));
+
         TableColumn klient = new TableColumn<Tabel, String>("Klient");
         klient.setMaxWidth(150);
         klient.setMinWidth(100);
@@ -52,7 +57,7 @@ public class AutoTabel extends TableView<Auto> {
         asukoht.setMinWidth(60);
         töödeNimekiri.setCellValueFactory(new PropertyValueFactory<Tabel, ArrayList>("töödeNimekiri"));
 
-        getColumns().addAll(kuupäev, vin, mark, mudel, klient,asukoht, töödeNimekiri);
+        getColumns().addAll(kuupäev, vin, mark, mudel, värvus, klient,asukoht, töödeNimekiri);
 
         setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 

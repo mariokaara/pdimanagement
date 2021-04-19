@@ -33,7 +33,7 @@ public class AutoVorm extends VBox {
 */
 
         DatePicker kalender = new DatePicker();
-        kalender.setPromptText("Sisesta kuupäev: ");
+        kalender.setValue(LocalDate.now());
         kalender.setFocusTraversable(true);
 
         TextField textField2 = new TextField();
@@ -50,8 +50,12 @@ public class AutoVorm extends VBox {
         textField4.setFocusTraversable(true);
 
         TextField textField5 = new TextField();
-        textField5.setPromptText("Sisesta kliendi nimi: ");
+        textField5.setPromptText("Sisesta auto värvus: ");
         textField5.setFocusTraversable(true);
+
+        TextField textField6 = new TextField();
+        textField6.setPromptText("Sisesta kliendi nimi: ");
+        textField6.setFocusTraversable(true);
 
         ComboBox<String> comboBox2 = new ComboBox<>();
         comboBox2.getItems().addAll("Tartu", "Laagri", "Narva", "Kuressaare");
@@ -87,7 +91,8 @@ public class AutoVorm extends VBox {
                 textField2.setText(newValue.getVin());
                 comboBox1.setValue(newValue.getMark());
                 textField4.setText(newValue.getMudel());
-                textField5.setText(newValue.getKlient());
+                textField5.setText(newValue.getVärvus());
+                textField6.setText(newValue.getKlient());
                 comboBox2.setValue(newValue.getAsukoht());
                 textField7.setText(newValue.getTöödeNimekiri());
             }
@@ -102,11 +107,12 @@ public class AutoVorm extends VBox {
                 String vin = textField2.getText();
                 String mark = comboBox1.getValue();
                 String mudel = textField4.getText();
-                String klient = textField5.getText();
+                String värvus = textField5.getText();
+                String klient = textField6.getText();
                 String asukoht = comboBox2.getValue();
                 String töödeNimekiri = textField7.getText();
 
-                Auto auto = new Auto(kuupäev, vin, mark, mudel, klient, asukoht, töödeNimekiri);
+                Auto auto = new Auto(kuupäev, vin, mark, mudel, värvus, klient, asukoht, töödeNimekiri);
                 vaadeldavadAutod.add(auto);
 
                 textField2.clear();
@@ -124,7 +130,8 @@ public class AutoVorm extends VBox {
                 String vin = textField2.getText();
                 String mark = comboBox1.getValue();
                 String mudel = textField4.getText();
-                String klient = textField5.getText();
+                String värvus = textField5.getText();
+                String klient = textField6.getText();
                 String asukoht = comboBox2.getValue();
                 String töödeNimekiri = textField7.getText();
 
@@ -134,6 +141,7 @@ public class AutoVorm extends VBox {
                 auto.setVin(vin);
                 auto.setMark(mark);
                 auto.setMudel(mudel);
+                auto.setVärvus(värvus);
                 auto.setKlient(klient);
                 auto.setAsukoht(asukoht);
                 auto.setTöödeNimekiri(töödeNimekiri);
@@ -142,12 +150,13 @@ public class AutoVorm extends VBox {
                 textField2.clear();
                 textField4.clear();
                 textField5.clear();
+                textField6.clear();
                 textField7.clear();
             }
         });
 
 
-        this.getChildren().addAll(kalender, textField2, comboBox1, textField4, textField5, comboBox2, textField7, lisaAuto, muudaAuto, kustutaAuto);
+        this.getChildren().addAll(kalender, textField2, comboBox1, textField4, textField5, textField6, comboBox2, textField7, lisaAuto, muudaAuto, kustutaAuto);
 
         this.getChildren().forEach(x -> {
             VBox.setMargin(x, new Insets(0, 10, 0, 10));
