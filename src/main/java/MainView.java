@@ -3,7 +3,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -21,8 +22,6 @@ public class MainView {
     private Stage stage;
     private BorderPane root;
     private Scene scene;
-    private Insets INSETS = new Insets(10, 5, 10, 5);
-    private Tabel table;
 
 
     public MainView(Stage stage) {
@@ -58,13 +57,10 @@ public class MainView {
         AutoTabel table = new AutoTabel(vaadeldavadAutod, aktiivneAuto);
         root.setCenter(table);
 
-        aktiivneAuto.addListener(new ChangeListener<Auto>() {
+        autoVorm.addEventHandler(AutoVorm.AUTO_MUUTMINE, new EventHandler<>(){
             @Override
-            public void changed(ObservableValue<? extends Auto> observable, Auto oldValue, Auto newValue) {
-                ObservableList<Auto> uusList = FXCollections.emptyObservableList();
-                FXCollections.copy(uusList, vaadeldavadAutod);
-                table.getItems().clear();
-                table.setItems(uusList);
+            public void handle(Event event) {
+                table.refresh();
             }
         });
 

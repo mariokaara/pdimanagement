@@ -3,7 +3,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -20,6 +22,9 @@ import java.io.*;
 import java.time.LocalDate;
 
 public class AutoVorm extends VBox {
+
+    static final EventType<Event> AUTO_MUUTMINE = new EventType<>("AUTO_MUUTMINE");
+    static final EventType<Event> AUTO_LISAMINE = new EventType<>("AUTO_LISAMINE");
 
     public AutoVorm(ObservableList<Auto> vaadeldavadAutod, ObjectProperty<Auto> aktiivneAuto){
 
@@ -114,6 +119,7 @@ public class AutoVorm extends VBox {
 
                 Auto auto = new Auto(kuupäev, vin, mark, mudel, värvus, klient, asukoht, töödeNimekiri);
                 vaadeldavadAutod.add(auto);
+                fireEvent(new Event(AUTO_LISAMINE));
 
                 textField2.clear();
 
@@ -146,6 +152,7 @@ public class AutoVorm extends VBox {
                 auto.setAsukoht(asukoht);
                 auto.setTöödeNimekiri(töödeNimekiri);
                 aktiivneAuto.set(auto);
+                fireEvent(new Event(AUTO_MUUTMINE));
 
                 textField2.clear();
                 textField4.clear();
