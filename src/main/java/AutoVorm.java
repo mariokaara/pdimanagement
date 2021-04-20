@@ -31,11 +31,6 @@ public class AutoVorm extends VBox {
         super(10);
 
         this.setAlignment(Pos.TOP_CENTER);
-        /*
-        TextField textField1 = new TextField();
-        textField1.setPromptText("Sisesta kuupäev: ");
-        textField1.setFocusTraversable(true);
-*/
 
         DatePicker kalender = new DatePicker();
         kalender.setValue(LocalDate.now());
@@ -77,6 +72,9 @@ public class AutoVorm extends VBox {
 
         Button kustutaAuto;
 
+        Button salvesta = new Button("SALVESTA");
+
+
         try (InputStream input = getClass().getResourceAsStream("pilt_kustuta.png");) {
             Image image = new Image(input);
             ImageView imageView = new ImageView(image);
@@ -108,6 +106,7 @@ public class AutoVorm extends VBox {
         lisaAuto.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
                 LocalDate kuupäev = kalender.getValue();
                 String vin = textField2.getText();
                 String mark = comboBox1.getValue();
@@ -122,10 +121,8 @@ public class AutoVorm extends VBox {
                 fireEvent(new Event(AUTO_LISAMINE));
 
                 textField2.clear();
-
                 textField4.clear();
                 textField5.clear();
-
                 textField7.clear();
             }
         });
@@ -162,8 +159,22 @@ public class AutoVorm extends VBox {
             }
         });
 
+        kustutaAuto.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                vaadeldavadAutod.remove(aktiivneAuto.get());
+            }
+        });
+        salvesta.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                FailiTabel failiTabel = new FailiTabel("andmebaas.txt");
+                    failiTabel.lisaAutod(vaadeldavadAutod);
+            }
+        });
 
-        this.getChildren().addAll(kalender, textField2, comboBox1, textField4, textField5, textField6, comboBox2, textField7, lisaAuto, muudaAuto, kustutaAuto);
+
+        this.getChildren().addAll(kalender, textField2, comboBox1, textField4, textField5, textField6, comboBox2, textField7, lisaAuto, muudaAuto, kustutaAuto, salvesta);
 
         this.getChildren().forEach(x -> {
             VBox.setMargin(x, new Insets(0, 10, 0, 10));

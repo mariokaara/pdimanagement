@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Auto {
 
@@ -26,6 +27,10 @@ public class Auto {
 
     public LocalDate getKuupäev() {
         return kuupäev;
+    }
+
+    public String getKuupäevFormaaditud() {
+        return DateTimeFormatter.ofPattern("dd/MM/yyyy").format(kuupäev);
     }
 
     public String getVin() {

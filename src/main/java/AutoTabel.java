@@ -20,7 +20,7 @@ public class AutoTabel extends TableView<Auto> {
         TableColumn kuupäev = new TableColumn<Tabel, String>("Kuupäev");
         kuupäev.setMaxWidth(75);
         kuupäev.setMinWidth(75);
-        kuupäev.setCellValueFactory(new PropertyValueFactory<Tabel, String>("kuupäev"));
+        kuupäev.setCellValueFactory(new PropertyValueFactory<Tabel, String>("kuupäevFormaaditud"));
 
         TableColumn vin = new TableColumn<Tabel, String>("VIN");
         vin.setMaxWidth(130);

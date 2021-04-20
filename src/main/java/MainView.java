@@ -31,8 +31,8 @@ public class MainView {
 
     private void buildUI() {
         root = new BorderPane();
-        List<Auto> autod = new ArrayList<>();
-        ObservableList<Auto> vaadeldavadAutod = FXCollections.observableList(autod);
+        FailiTabel failiTabel = new FailiTabel("andmebaas.txt");
+        ObservableList<Auto> vaadeldavadAutod = FXCollections.observableList(failiTabel.autodeList());
         SimpleObjectProperty<Auto> aktiivneAuto = new SimpleObjectProperty<>();
 
 
