@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-import java.io.*;
+import java.io.InputStream;
 import java.time.LocalDate;
 
 public class AutoVorm extends VBox {
@@ -26,7 +26,7 @@ public class AutoVorm extends VBox {
     static final EventType<Event> AUTO_MUUTMINE = new EventType<>("AUTO_MUUTMINE");
     static final EventType<Event> AUTO_LISAMINE = new EventType<>("AUTO_LISAMINE");
 
-    public AutoVorm(ObservableList<Auto> vaadeldavadAutod, ObjectProperty<Auto> aktiivneAuto){
+    public AutoVorm(ObservableList<Auto> vaadeldavadAutod, ObjectProperty<Auto> aktiivneAuto) {
 
         super(10);
 
@@ -75,7 +75,7 @@ public class AutoVorm extends VBox {
         Button salvesta = new Button("SALVESTA");
 
 
-        try (InputStream input = getClass().getResourceAsStream("pilt_kustuta.png");) {
+        try (InputStream input = getClass().getResourceAsStream("pilt_kustuta.png")) {
             Image image = new Image(input);
             ImageView imageView = new ImageView(image);
             imageView.setFitHeight(20);
@@ -84,7 +84,6 @@ public class AutoVorm extends VBox {
         } catch (Exception e) {
             kustutaAuto = new Button("KUSTUTA");
         }
-
 
 
         aktiivneAuto.addListener(new ChangeListener<Auto>() {
@@ -100,7 +99,6 @@ public class AutoVorm extends VBox {
                 textField7.setText(newValue.getTöödeNimekiri());
             }
         });
-
 
 
         lisaAuto.setOnAction(new EventHandler<ActionEvent>() {
@@ -169,7 +167,7 @@ public class AutoVorm extends VBox {
             @Override
             public void handle(ActionEvent event) {
                 FailiTabel failiTabel = new FailiTabel("andmebaas.txt");
-                    failiTabel.lisaAutod(vaadeldavadAutod);
+                failiTabel.lisaAutod(vaadeldavadAutod);
             }
         });
 
@@ -184,6 +182,7 @@ public class AutoVorm extends VBox {
         lisaAuto.setFont(font);
         muudaAuto.setFont(font);
         kustutaAuto.setFont(font);
+        salvesta.setFont(font);
 
 
     }

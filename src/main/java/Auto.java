@@ -29,6 +29,8 @@ public class Auto {
         return kuupäev;
     }
 
+
+    // kasutatakse AutoTabel klassi poolt kuupäeva kuvamiseks sobilikus formaadis (kuigi IntelliJ ütleb, et justkui ei kasutata)
     public String getKuupäevFormaaditud() {
         return DateTimeFormatter.ofPattern("dd/MM/yyyy").format(kuupäev);
     }
@@ -77,7 +79,7 @@ public class Auto {
         this.mudel = mudel;
     }
 
-    public void setVärvus(String mudel) {
+    public void setVärvus(String värvus) {
         this.värvus = värvus;
     }
 
