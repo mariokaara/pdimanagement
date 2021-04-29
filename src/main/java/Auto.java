@@ -31,6 +31,9 @@ public class Auto {
 
 
     // kasutatakse AutoTabel klassi poolt kuupäeva kuvamiseks sobilikus formaadis (kuigi IntelliJ ütleb, et justkui ei kasutata)
+
+
+
     public String getKuupäevFormaaditud() {
         return DateTimeFormatter.ofPattern("dd/MM/yyyy").format(kuupäev);
     }

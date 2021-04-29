@@ -1,3 +1,9 @@
 2021-04-20,1M8GDM9ADKP042788,Dacia,Duster,<sd,Margus Paas,Tartu,klaaside toonimine 21.05.2021
+2021-04-20,,Dacia,,Punane,Meelis,Tartu,
+2021-04-20,1M8GJDH9ADKP042788,Dacia,Duster,Sinine,Margus Paas,Tartu,klaaside toonimine12.05.2021
 2021-04-20,ds<,Dacia,sd,<sd,sd,Tartu,
-2021-04-20,,Dacia,,,xvcxcvxcv,Tartu,
+2021-04-20,,Dacia,,,sd,Tartu,
+2021-04-20,,Dacia,,,sd,Tartu,
+2021-04-20,,Dacia,,,sd,Tartu,
+2021-04-20,,Dacia,,,sd,Tartu,
+2021-04-29,,null,Salvestatud,,,null,

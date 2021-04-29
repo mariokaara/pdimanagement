@@ -41,13 +41,11 @@ public class MainView {
 
 
         // Vasak
-
         AutoVorm autoVorm = new AutoVorm(vaadeldavadAutod, aktiivneAuto);
         root.setLeft(autoVorm);
 
 
         // Keskmine
-        //
         AutoTabel table = new AutoTabel(vaadeldavadAutod, aktiivneAuto);
         root.setCenter(table);
 
@@ -64,12 +62,11 @@ public class MainView {
 
 
         // Alumine
-        /*
-        Label silt = new Label("Made by Mario Käära and Raivo Kasepuu");
+        Label silt = new Label(" ");
         silt.setFont(new Font(10));
         silt.setAlignment(Pos.BOTTOM_CENTER);
         root.setBottom(silt);
-        */
+
         scene = new Scene(root);
         stage.setTitle("PDI Management v1.0");
         stage.setScene(scene);
