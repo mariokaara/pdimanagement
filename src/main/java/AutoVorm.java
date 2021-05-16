@@ -114,6 +114,7 @@ public class AutoVorm extends VBox {
                 String töödeNimekiri = textField7.getText();
 
                 Auto auto = new Auto(kuupäev, vin, mark, mudel, värvus, klient, asukoht, töödeNimekiri);
+
                 vaadeldavadAutod.add(auto);
                 fireEvent(new Event(AUTO_LISAMINE));
 

@@ -1,3 +1,6 @@
+
+// Programmi tegid Mario Käära ja Raivo Kasepuu
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 
